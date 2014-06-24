@@ -1,2 +1,1 @@
-web: node ./index.js
-fileformat : unix
+web: node index.js
