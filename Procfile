@@ -1,1 +1,1 @@
-web: node app_ws
+web: node index
