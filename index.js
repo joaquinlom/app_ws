@@ -22,10 +22,11 @@ function onChatMessage(msg){
   io.emit('chat message', msg);
 };
 function onNewPlayer(data) {
-  util.log("Se creo nuevo jugador");
+  console.log("Se creo nuevo jugador");
   var newPlayer = new Player(data.x, data.y);
       newPlayer.id = this.id;
       io.emit("new player", {id: newPlayer.id, x: newPlayer.getX(), y: newPlayer.getY()});
+      onChatMessage(data);
   /*
     var i, existingPlayer;
     for (i = 0; i < players.length; i++) {
