@@ -6,7 +6,7 @@ var players;
 
 var setEventHandlers = function() {
     io.on('connection', function(socket){
-            io.emit('a user connected'+socket.id);
+           io.emit("chat message","Bienvenido al Canal");
             socket.on("disconnect", onClientDisconnect);
             socket.on("new player", onNewPlayer);
             socket.on("move player", onMovePlayer);
