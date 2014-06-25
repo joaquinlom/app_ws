@@ -6,7 +6,7 @@ var players;
 
 var setEventHandlers = function() {
     io.on('connection', function(socket){
-            console.log('a user connected'+socket.id);
+            io.emit('a user connected'+socket.id);
             socket.on("disconnect", onClientDisconnect);
             socket.on("new player", onNewPlayer);
             socket.on("move player", onMovePlayer);
