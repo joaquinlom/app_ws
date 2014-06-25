@@ -28,7 +28,9 @@
     $('#m').val('');
     return false;
   });
-  
+  socket.on('connect',function(){
+    console.log("success");
+  })
   socket.on('chat message', function(msg){
     $('#messages').append($('<li>').text(msg));
   });
