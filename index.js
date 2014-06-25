@@ -25,12 +25,12 @@ function onNewPlayer(data) {
   var newPlayer = new Player(data.x, data.y);
       newPlayer.id = this.id;
       io.emit("new player", {id: newPlayer.id, x: newPlayer.getX(), y: newPlayer.getY()});
-  
+  /*
     var i, existingPlayer;
     for (i = 0; i < players.length; i++) {
       existingPlayer = players[i];
       socket.broadcast.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY()});
-    };
+    };*/
     players.push(newPlayer);
 };
 
