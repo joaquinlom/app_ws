@@ -22,7 +22,7 @@ function onChatMessage(msg){
   io.emit('chat message', msg);
 };
 function onNewPlayer(data) {
-  console.log("Se creo nuevo jugador");
+  io.emit('chat message',"Se creo nuevo jugador");
   var newPlayer = new Player(data.x, data.y);
       newPlayer.id = this.id;
       io.emit("new player", {id: newPlayer.id, x: newPlayer.getX(), y: newPlayer.getY()});
@@ -34,6 +34,7 @@ function onNewPlayer(data) {
       socket.broadcast.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY()});
     };*/
     players.push(newPlayer);
+  
 };
 
 function onMovePlayer(data) {
