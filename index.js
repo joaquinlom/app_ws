@@ -11,7 +11,7 @@ var setEventHandlers = function() {
 };
 function onSocketConnection(client) {
    util.log("New player has connected: "+client.id);
-    this.broadcast.emit('Se conecto nueva persona');
+    socket.emit('Se conecto nueva persona');
     client.on("disconnect", onClientDisconnect);
     client.on("new player", onNewPlayer);
     client.on("move player", onMovePlayer);
