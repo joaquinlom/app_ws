@@ -11,9 +11,15 @@ var setEventHandlers = function() {
             socket.on("new player", onNewPlayer);
             socket.on("move player", onMovePlayer);
             socket.on("chat message",onChatMessage);
+            socket.on('stop player',onStopPlayer);
         });
 };
-
+function onStopPlayer(date){
+   var obj = PlayerbyId(data.id);
+    obj.setState(data.move);
+  
+    io.emit('stop player',{id: data.id, move: data.move});
+}
 function onClientDisconnect() {
     this.broadcast.emit("Player has disconnected: "+this.id);
 };
@@ -26,19 +32,32 @@ function onNewPlayer(data) {
   var newPlayer = new Player(data.x, data.y);
       newPlayer.id = this.id;
       io.emit("new player", {id: newPlayer.id, x: newPlayer.getX(), y: newPlayer.getY()});
-      onChatMessage(data);
-  /*
+     
+  
     var i, existingPlayer;
     for (i = 0; i < players.length; i++) {
       existingPlayer = players[i];
-      socket.broadcast.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY()});
-    };*/
+      this.emit("new player", {id: existingPlayer.id, x: existingPlayer.getX(), y: existingPlayer.getY()});
+    };
     players.push(newPlayer);
   
 };
 
-function onMovePlayer(data) {
+function playerById(id) {
+    var i;
+    for (i = 0; i < players.length; i++) {
+        if (players[i].id == id)
+            return players[i];
+    };
 
+    return false;
+};
+
+function onMovePlayer(data) {
+  var obj = playerById(data.id);
+    obj.setState(data.move);
+  
+    io.emit('move player',{id: data.id, move: data.move});
 };
 
 
